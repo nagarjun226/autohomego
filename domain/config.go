@@ -47,7 +47,7 @@ func (c *Config) GetConfig(service string) (map[string]interface{}, error) {
 	var configM map[string]interface{}
 	configM, ok = config.(map[string]interface{})
 	if !ok {
-		return baseConfigM, fmt.Errorf("Service Config is not a map. Base config returned")
+		return baseConfigM, fmt.Errorf("Service Config for service %v is not a map. Base config returned", service)
 	}
 
 	cM := make(map[string]interface{})
