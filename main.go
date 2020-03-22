@@ -1,8 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"net/http"
+
+	"github.com/nagarjun226/configmgr/api"
+	"github.com/nagarjun226/configmgr/controller"
 
 	"github.com/nagarjun226/configmgr/domain"
 )
@@ -10,12 +12,19 @@ import (
 func main() {
 	c := domain.Config{}
 
-	configBytes, err := ioutil.ReadFile("config.json")
-	if err != nil {
-		panic(err)
+	autoLoader := domain.ConfigAutoLoader{
+		Config:   &c,
+		Location: "config.json",
+		Rr:       3,
+	}
+	go autoLoader.Run()
+
+	controller := controller.Controller{
+		Config: &c,
 	}
 
-	c.SetFromJSONParsed(configBytes)
+	api := api.API{}
 
-	fmt.Println(c.GetConfig("registryapi"))
+	r := api.Router(&controller)
+	http.ListenAndServe(":8080", r)
 }

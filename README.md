@@ -21,3 +21,35 @@ Home automation project - the config manager
 ## Developer notes
 
 - config.json will not be checked in
+
+## Schema
+
+- Every `config.json` has a base config which is a common config across all the services
+- Every service will have its own specific config. These will take precedence incase there is a clash
+```
+    base : 
+            attribute: value;
+            .
+            .
+    service1 : 
+            attribute: value;
+            .
+            .
+    service2: 
+            attribute: value;
+            .
+            .
+    .
+    .
+    .
+```
+
+## ToDOs
+
+- Safe access config object
+- Test Code
+- logging
+- better error handling
+
+
+
