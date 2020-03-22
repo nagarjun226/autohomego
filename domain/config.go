@@ -4,13 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"sync"
 	"time"
 )
 
 // Config - Struct that will hold the config object
 // Wrapper around the config
 type Config struct {
-	config map[string]interface{} //
+	config map[string]interface{} // The contents of the config.json
+	sync.Mutex
 }
 
 // ConfigAutoLoader - keep reloading the given config object from location
@@ -78,6 +80,8 @@ func (c *Config) SetFromJSONParsed(b []byte) error {
 		return err
 	}
 
+	c.Lock()
+	defer c.Unlock()
 	c.config = rawConfig
 	return nil
 }
@@ -85,6 +89,8 @@ func (c *Config) SetFromJSONParsed(b []byte) error {
 // GetConfig - obtain the config of a service. Returns the entire config if no argument provided
 func (c *Config) GetConfig(service string) (map[string]interface{}, error) {
 	// If no service name provided, return the whole config
+	c.Lock()
+	defer c.Unlock()
 	if service == "" {
 		return c.config, nil
 	}

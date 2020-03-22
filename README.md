@@ -46,7 +46,6 @@ Home automation project - the config manager
 
 ## ToDOs
 
-- Safe access config object
 - Test Code
 - logging
 - better error handling
