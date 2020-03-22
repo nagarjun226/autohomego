@@ -12,8 +12,12 @@ Home automation project - the config manager
 
 - update config via http request
 
-## Precedence
+## Order of Precedence
 
 - `base` is the default config for all services
 - Service specific config having any of the same parameters as the base config will take precedence
 - In the future config change posted by put request will take precendence over the service specific config
+
+## Developer notes
+
+- config.json will not be checked in
