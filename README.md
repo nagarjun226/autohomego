@@ -1,4 +1,4 @@
-# autohomego
+# configmgr
 Home automation project - the config manager
 
 ## Features
