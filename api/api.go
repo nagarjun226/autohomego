@@ -6,6 +6,7 @@ import (
 )
 
 // API - API object. A nice abstraction around the router. Maybe can be used in the future, not of much use now
+// useful if you have to store login credentials?
 type API struct {
 }
 
