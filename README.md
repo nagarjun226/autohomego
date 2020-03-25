@@ -44,6 +44,23 @@ Home automation project - the config manager
     .
 ```
 
+## API
+
+**Definition**
+
+`GET /getconfig/{service_name <string>}`
+
+**Response**
+- `400 Error` On Bad Request
+- `500 Error` On Internal server error
+- `200 OK` On success
+```json
+service1 : 
+        attribute: value;
+        .
+        .
+```
+
 ## ToDOs
 
 - Test Code
