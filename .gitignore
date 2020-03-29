@@ -16,3 +16,5 @@
 
 # Don't check in the config file
 config.json
+
+*.DS_Store
